@@ -1,7 +1,8 @@
 library(shiny)
 
 ui <- fluidPage(
-  textInput("selected_park", "Park")
+  textInput("selected_park", "Park"),
+  textOutput("park_name")
 )
 
 server <- function(input, output, session) {
