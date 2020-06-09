@@ -6,7 +6,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  
+  output$park_name <- renderText(input$selected_park)
 }
 
 shinyApp(ui, server)
