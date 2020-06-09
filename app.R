@@ -18,7 +18,7 @@ ui <- fluidPage(
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
+      numericInput("bins",
         "Number of bins:",
         min = 1,
         max = 50,
@@ -41,7 +41,7 @@ server <- function(input, output) {
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
     
     # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    hist(x, breaks = bins, col = 'darkblue', border = 'white')
   })
 }
 
