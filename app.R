@@ -8,7 +8,8 @@ monthly_visits <- read_rds("data/monthly_visits.rds")
 parks <- annual_visits$park_name %>% unique()
 
 ui <- fluidPage(
-  selectInput("selected_park", "Park", choices = parks),
+  selectInput("selected_park", "Park", choices = parks,
+    selected = "Crater Lake NP"),
   textOutput("park_name")
 )
 
