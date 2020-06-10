@@ -7,14 +7,11 @@ monthly_visits <- read_rds("data/monthly_visits.rds")
 
 ui <- fluidPage(
   textInput("selected_park", "Park"),
-  textOutput("park_name"),
-  tableOutput("data")
+  textOutput("park_name")
 )
 
 server <- function(input, output, session) {
   output$park_name <- renderText(input$selected_park)
-  
-  output$data <- renderTable(head(monthly_visits))
 }
 
 shinyApp(ui, server)
