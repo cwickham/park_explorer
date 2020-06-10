@@ -5,9 +5,10 @@ library(tidyverse)
 annual_visits <- read_rds("data/annual_visits.rds")
 monthly_visits <- read_rds("data/monthly_visits.rds")
 
+parks <- annual_visits$park_name %>% unique()
+
 ui <- fluidPage(
-  selectInput("selected_park", "Park",
-    choices = c("Crater Lake NP", "Acadia NP")),
+  selectInput("selected_park", "Park", choices = parks),
   textOutput("park_name")
 )
 
