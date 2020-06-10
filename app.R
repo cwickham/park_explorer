@@ -27,7 +27,7 @@ server <- function(input, output, session) {
     }
     
     annual_visits %>% 
-      filter(park_name == "Crater Lake NP") %>% 
+      filter(park_name == input$selected_park) %>% 
       filter(year == 2019) %>% 
       summarize_park()
   })
