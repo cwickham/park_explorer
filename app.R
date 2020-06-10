@@ -27,7 +27,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   output$park_name <- renderText(input$selected_park)
   
-  output$park_sumary <- renderText({
+  output$park_summary <- renderText({
     annual_visits %>% 
       filter(park_name == input$selected_park) %>% 
       filter(year == 2019) %>% 
