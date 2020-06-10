@@ -17,7 +17,21 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   output$park_name <- renderText(input$selected_park)
   
-  output$park_summary <- renderText(input$selected_park)
+  output$park_summary <- renderText({
+    summarize_park <- function(one_year){
+      comma <- scales::label_comma()
+      one_year %>% 
+        glue::glue_data(
+          "In { year }, { park_name } had { comma(recreation_visits) } recreation visits."
+        )
+    }
+    
+    annual_visits %>% 
+      filter(park_name == "Crater Lake NP") %>% 
+      filter(year == 2019) %>% 
+      summarize_park()
+  })
+
 }
 
 shinyApp(ui, server)
