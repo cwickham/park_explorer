@@ -21,7 +21,8 @@ ui <- fluidPage(
   selectInput("selected_park", "Park", choices = parks,
     selected = "Crater Lake NP"),
   textOutput("park_name"),
-  textOutput("park_summary")
+  textOutput("park_summary"),
+  plotOutput("annual_plot")
 )
 
 server <- function(input, output, session) {
@@ -32,6 +33,16 @@ server <- function(input, output, session) {
       filter(park_name == input$selected_park) %>% 
       filter(year == 2019) %>% 
       summarize_park()
+  })
+
+  output$annual_plot <- renderPlot({
+    annual_visits %>% 
+      filter(park_name == input$selected_park) %>% 
+      ggplot(aes(year, recreation_visits)) +
+      geom_point(data = ~ filter(., year == 2019)) +
+      geom_line() +
+      scale_y_continuous(labels = scales::label_comma()) +
+      labs(x = "", y = "Visits")
   })
 
 }
