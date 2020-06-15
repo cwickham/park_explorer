@@ -18,14 +18,18 @@ monthly_visits <- read_rds("data/monthly_visits.rds")
 parks <- annual_visits$park_name %>% unique()
 
 ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
+  fluidRow(
+    column(4, 
       selectInput("selected_park", "Park", choices = parks,
         selected = "Crater Lake NP")
+    )
+  ),
+  textOutput("park_name"),
+  fluidRow(
+    column(8,
+      plotOutput("annual_plot")
     ),
-    mainPanel(
-      textOutput("park_name"),
-      plotOutput("annual_plot"),
+    column(4,
       textOutput("park_summary")
     )
   )
