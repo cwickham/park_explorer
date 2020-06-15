@@ -25,8 +25,8 @@ ui <- fluidPage(
     ),
     mainPanel(
       textOutput("park_name"),
-      textOutput("park_summary"),
-      plotOutput("annual_plot")
+      plotOutput("annual_plot"),
+      textOutput("park_summary")
     )
   )
 )
