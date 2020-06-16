@@ -16,11 +16,12 @@ ui <- fluidPage(
         selected = "Crater Lake NP")
     ),
     column(4,
-      numericInput("selected_year", "Year", 
+      sliderInput("selected_year", "Year", 
         value = 2019,
         min = min(annual_visits$year), 
         max = max(annual_visits$year),
-        step = 1)
+        step = 1,
+        sep = "")
     )
   ),
   textOutput("park_name"),
