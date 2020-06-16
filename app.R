@@ -11,6 +11,7 @@ monthly_visits <- read_rds("data/monthly_visits.rds")
 parks <- annual_visits$park_name %>% unique()
 
 ui <- fluidPage(theme = shinytheme("sandstone"),
+  titlePanel("National Park Visit Explorer"),
   fluidRow(
     column(4, 
       selectInput("selected_park", "Park", choices = parks,
