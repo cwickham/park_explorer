@@ -27,7 +27,8 @@ ui <- fluidPage(
   ),
   fluidRow(
     column(8, 
-      plotOutput("monthly_plot")
+      plotOutput("monthly_plot"),
+      checkboxInput("display_average", "Display monthly average")
     )
   )
 )
@@ -54,7 +55,7 @@ server <- function(input, output, session) {
   output$monthly_plot <- renderPlot({
     monthly_visits %>% 
       filter(park_name == input$selected_park) %>% 
-      plot_monthly() 
+      plot_monthly(display_average = input$display_average) 
   })
   
 }
