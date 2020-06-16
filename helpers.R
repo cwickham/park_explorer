@@ -8,3 +8,25 @@ summarize_park <- function(one_year){
     )
 }
 
+# Takes annual data and produces a plot
+plot_annual <- function(annual_data){
+  annual_data %>% 
+    ggplot(aes(year, recreation_visits)) +
+    geom_point(data = ~ filter(., year == 2019)) +
+    geom_line() +
+    scale_y_continuous(labels = scales::label_comma()) +
+    labs(x = "", y = "Visits")
+}
+
+# Takes monthly data and produces a plot
+plot_monthly <- function(monthly_data){
+  monthly_data %>% 
+    ggplot(aes(month, recreation_visits_proportion)) +
+    geom_line(aes(group = year), alpha = 0.2) +
+    geom_line(data = ~ filter(.x, year == 2019)) +
+    stat_summary(fun = mean, 
+      geom = "line", color = "#325D88", size = 1.5) +
+    scale_x_continuous(breaks = 1:12, labels = month.abb) +
+    scale_y_continuous(labels = scales::label_percent()) +
+    labs(x = "", y = "Of Annual Visits")
+}
