@@ -78,12 +78,13 @@ server <- function(input, output, session) {
 
   output$annual_plot <- renderPlot({
     annual_data() %>% 
-      plot_annual()
+      plot_annual(highlight_year = input$selected_year)
   })
   
   output$monthly_plot <- renderPlot({
     monthly_data() %>% 
-      plot_monthly(display_average = input$display_average) 
+      plot_monthly(display_average = input$display_average,
+        highlight_year = input$selected_year) 
   })
   
 }
