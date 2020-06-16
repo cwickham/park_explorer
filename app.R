@@ -44,7 +44,7 @@ server <- function(input, output, session) {
     annual_data() %>% 
       filter(year == 2019) %>% 
       summarize_park()
-    })
+  })
   
   output$annual_plot <- renderPlot({
     annual_data() %>% 
