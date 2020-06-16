@@ -27,6 +27,7 @@ ui <- fluidPage(theme = shinytheme("sandstone"),
     )
   ),
   textOutput("park_name"),
+  h3("Annual Visits"),
   fluidRow(
     column(8,
       plotOutput("annual_plot")
@@ -35,6 +36,7 @@ ui <- fluidPage(theme = shinytheme("sandstone"),
       textOutput("park_summary")
     )
   ),
+  h3("Monthly Visits"),
   fluidRow(
     column(8, 
       plotOutput("monthly_plot"),
