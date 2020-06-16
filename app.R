@@ -43,16 +43,19 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   output$park_name <- renderText(input$selected_park)
   
-  output$park_summary <- renderText({
+  annual_data <- reactive({
     annual_visits %>% 
-      filter(park_name == input$selected_park) %>% 
+      filter(park_name == input$selected_park)
+  })
+  
+  output$park_summary <- renderText({
+    annual_data() %>% 
       filter(year == 2019) %>% 
       summarize_park()
     })
   
   output$annual_plot <- renderPlot({
-    annual_visits %>% 
-      filter(park_name == input$selected_park) %>% 
+    annual_data() %>% 
       ggplot(aes(year, recreation_visits)) +
       geom_point(data = ~ filter(., year == 2019)) +
       geom_line() +
