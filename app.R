@@ -1,4 +1,5 @@
 library(shiny)
+library(shinythemes)
 library(tidyverse)
 
 source("helpers.R")
@@ -9,7 +10,7 @@ monthly_visits <- read_rds("data/monthly_visits.rds")
 
 parks <- annual_visits$park_name %>% unique()
 
-ui <- fluidPage(
+ui <- fluidPage(theme = shinytheme("sandstone"),
   fluidRow(
     column(4, 
       selectInput("selected_park", "Park", choices = parks,
