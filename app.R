@@ -44,6 +44,11 @@ server <- function(input, output, session) {
       filter(park_name == input$selected_park)
   })
   
+  monthly_data <- reactive({
+    monthly_visits %>% 
+      filter(park_name == input$selected_park) 
+  })
+  
   output$park_summary <- renderText({
     annual_data() %>% 
       filter(year == 2019) %>% 
@@ -56,14 +61,12 @@ server <- function(input, output, session) {
   })
   
   output$monthly_plot <- renderPlot({
-    monthly_visits %>% 
-      filter(park_name == input$selected_park) %>% 
+    monthly_data() %>% 
       plot_monthly(display_average = input$display_average) 
   })
   
   output$monthly_table <- renderTable(digits = 0, {
-    monthly_visits %>% 
-      filter(park_name == input$selected_park) %>% 
+    monthly_data() %>% 
       filter(year == 2019) %>% 
       select(month_name, recreation_visits)
   })
