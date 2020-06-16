@@ -26,7 +26,7 @@ ui <- fluidPage(theme = shinytheme("sandstone"),
         sep = "")
     )
   ),
-  textOutput("park_name"),
+  h1(textOutput("park_name")),
   h3("Annual Visits"),
   fluidRow(
     column(8,
