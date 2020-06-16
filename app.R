@@ -63,13 +63,13 @@ server <- function(input, output, session) {
 
   output$park_summary <- renderText({
     annual_data() %>% 
-      filter(year == 2019) %>% 
+      filter(year == input$selected_year) %>% 
       summarize_park()
   })
 
   output$monthly_table <- renderTable(digits = 0, {
     monthly_data() %>% 
-      filter(year == 2019) %>% 
+      filter(year == input$selected_year) %>% 
       select(month_name, recreation_visits)
   })
   
