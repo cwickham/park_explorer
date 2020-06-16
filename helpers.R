@@ -1,3 +1,22 @@
+# Plotting color defaults ----------------------------------------
+
+my_colors <- c(
+  light = "#F8F5F0",
+  dark = "#3E3F3A",
+  blue = "#325D88",
+  grey = "#8E8C84"
+)
+
+theme_set(theme_grey(base_size = 18))
+theme_update(
+  panel.background = element_rect(fill = my_colors["light"]), 
+  text = element_text(color = my_colors["dark"])
+)
+
+update_geom_defaults("line", list(color = my_colors["dark"]))
+
+# Functions for outputs ---------------------------------------------------
+
 # Function to form a one sentence summary from a year
 # of annual data
 summarize_park <- function(one_year){
