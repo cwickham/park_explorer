@@ -29,6 +29,9 @@ ui <- fluidPage(
     column(8, 
       plotOutput("monthly_plot"),
       checkboxInput("display_average", "Display monthly average")
+    ),
+    column(4, 
+      tableOutput("monthly_table")
     )
   )
 )
@@ -56,6 +59,13 @@ server <- function(input, output, session) {
     monthly_visits %>% 
       filter(park_name == input$selected_park) %>% 
       plot_monthly(display_average = input$display_average) 
+  })
+  
+  output$monthly_table <- renderTable(digits = 0, {
+    monthly_visits %>% 
+      filter(park_name == input$selected_park) %>% 
+      filter(year == 2019) %>% 
+      select(month_name, recreation_visits)
   })
   
 }
